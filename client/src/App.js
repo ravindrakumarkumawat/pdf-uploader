@@ -80,10 +80,12 @@ function App() {
       .then((res) => {
         // then print response status
         toast.success("upload success");
+        setLoaded(0)
       })
       .catch((err) => {
         // then print response status
-        toast.error("upload fail");
+        toast.error("Upload fail: Upload only 5 PDF files");
+        setLoaded(0)
       });
   }
 

@@ -5,6 +5,15 @@ const cors = require('cors')
 const app = express()
 const port = process.env.PORT || 5000
 
+const imageFilter = function(req, file, cb) {
+  // Accept pdf only
+  if (!file.originalname.match(/\.(pdf|PDF)$/)) {
+      req.fileValidationError = 'Only pdf files are allowed!';
+      return cb(new Error('Only pdf files are allowed!'), false);
+  }
+  cb(null, true);
+};
+
 app.use(cors())
 
 // Multer storage
@@ -18,7 +27,7 @@ const storage = multer.diskStorage({
   }
 })
 
-const upload = multer({ storage }).array('file')
+const upload = multer({ storage, fileFilter: imageFilter }).array('file', 5)
 
 // Routes
 app.get('/', (req, res) => {
