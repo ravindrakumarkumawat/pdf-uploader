@@ -95,7 +95,7 @@ function App() {
       	  <div className="offset-md-3 col-md-6">
                <div className="form-group files">
                 <label>Upload Your PDF File </label>
-                <input type="file" className="form-control" multiple onChange={onChangeHandler}/>
+                <input type="file" accept="application/pdf" className="form-control" multiple onChange={onChangeHandler}/>
               </div>  
               <div className="form-group">
               <ToastContainer />
