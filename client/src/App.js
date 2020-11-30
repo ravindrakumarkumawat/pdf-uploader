@@ -4,7 +4,7 @@ function App() {
   return (
     <form
       method="POST"
-      action="/upload-profile-pic"
+      action="http://localhost:5000/upload-profile-pic"
       encType="multipart/form-data"
     >
       <div>
