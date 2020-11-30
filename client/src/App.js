@@ -12,12 +12,13 @@ function App() {
   const checkMimeType  = (event) => {
     const files = event.target.files // Getting file Object
     const type = "application/pdf" // list of MIME type
-    
-    const err = files.map((file) => {
-      if (file.type !== type) {
-        return `${file.type} is not a supported format \n`
+    let err = []
+
+    for (let x = 0; x < files.length; x++) {
+      if (files[x].type !== type) {
+        err[x] = `${files[x].type} is not a supported format \n`
       }
-    })
+    }
 
     for (let z = 0; z < err.length; z++) {
       toast.error(err[z])
@@ -42,11 +43,13 @@ function App() {
     const files = event.target.files
     const size = 5 * 1024 * 1024
 
-    const err = files.map((file) => {
-      if (file.size > size) {
-        return `${file.type} is too large, please pick a smaller file\n`
+    let err = []
+    
+    for (let x = 0; x < files.length; x++) {
+      if (files[x].size !== size) {
+        err[x] = `${files[x].type} is not a supported format \n`
       }
-    })  
+    }
     
     for (let z = 0; z < err.length; z++) {
       toast.error(err[z]);
@@ -69,7 +72,7 @@ function App() {
     }
 
     axios
-      .post("http://localhost:5000/upload-profile-pic", data, {
+      .post("http://localhost:5000/upload", data, {
         onUploadProgress: (ProgressEvent) => {
           setLoaded((ProgressEvent.loaded / ProgressEvent.total) * 100)
         },
@@ -90,7 +93,7 @@ function App() {
       	  <div className="offset-md-3 col-md-6">
                <div className="form-group files">
                 <label>Upload Your PDF File </label>
-                <input type="file" name="profile_pic" className="form-control" multiple onChange={onChangeHandler}/>
+                <input type="file" className="form-control" multiple onChange={onChangeHandler}/>
               </div>  
               <div className="form-group">
               <ToastContainer />
