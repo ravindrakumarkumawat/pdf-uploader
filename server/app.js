@@ -13,6 +13,18 @@ app.use(express.json()) // req.body
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(publicDirectoryPath))
 
+// Multer storage
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+      cb(null, 'uploads/')
+  },
+
+  // By default, multer removes file extensions so let's add them back
+  filename: function(req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+  }
+})
+
 // Routes
 
 
