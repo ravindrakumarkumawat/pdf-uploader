@@ -2,7 +2,8 @@ const express = require('express')
 const cors = require('cors')
 const bcrypt = require('bcrypt')
 const { connectDB } = require('./db/connectDb')
-const pdfFilter = require('./helper/pdfFilter')
+
+const uploadRouter = require('./routes/uploadRouter')
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -15,7 +16,7 @@ app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 
 // Routes
-app.use('/', require('./routes/uploadRouter'))
+app.use('/', uploadRouter)
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`)
