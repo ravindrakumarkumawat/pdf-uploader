@@ -1,6 +1,7 @@
 const express = require('express')
 const multer = require('multer')
 const cors = require('cors')
+require('dotenv').config()
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -45,6 +46,10 @@ app.post('/upload', (req, res) => {
     }
     return res.status(200).send(req.file) // Everything went fine    
   })
+})
+
+app.get('login', (req, res) => {
+  // Authenticate user
 })
 
 // Start server
