@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 require('dotenv').config()
 
-const imageFilter = require('./helper/imageFilter')
+const pdfFilter = require('./helper/pdfFilter')
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -25,7 +25,7 @@ const storage = multer.diskStorage({
   }
 })
 
-const upload = multer({ storage, fileFilter: imageFilter }).array('file', 5)
+const upload = multer({ storage, fileFilter: pdfFilter }).array('file', 5)
 
 // Routes
 app.get('/', (req, res) => {
