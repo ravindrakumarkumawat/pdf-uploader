@@ -1,18 +1,19 @@
 const express = require('express')
 const multer = require('multer')
 const cors = require('cors')
-const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
-require('dotenv').config()
-
+const { connectDB } = require('./db/connectDb')
 const pdfFilter = require('./helper/pdfFilter')
 
 const app = express()
 const port = process.env.PORT || 5000
 
+// Database connecting
+connectDB()
 
 app.use(express.json())
 app.use(cors())
+app.use(express.urlencoded({ extended: false }))
 
 // Multer storage
 const storage = multer.diskStorage({
@@ -28,7 +29,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage, fileFilter: pdfFilter }).array('file', 5)
 
 // Routes
-app.use("/user", require("./routes/userRouter"))
 app.get('/', (req, res) => {
   res.send('Hello Server')
 })
@@ -50,24 +50,7 @@ app.get('/login', (req, res) => {
   // Authenticate user
 })
 
-// Start server
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/public')))
-  app.use('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/public/index.html'))
-  })
-}
-
 app.listen(port, () => {
   console.log(`listening on port ${port}`)
 })
 
-
-// Setup for mongoose
-mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
-  useNewUrlParser: true, 
-  useUnifiedTopology: true
-}, (err) => {
-  if (err) throw err
-  console.log('MongoDB connection established')
-})
