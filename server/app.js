@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 const { connectDB } = require('./db/connectDb')
 
 const uploadRouter = require('./routes/uploadRouter')
+const userRouter = require('./routes/userRouter')
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: false }))
 
 // Routes
 app.use('/', uploadRouter)
+app.use('/users', userRouter)
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`)
