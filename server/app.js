@@ -1,20 +1,17 @@
 const express = require('express')
 const multer = require('multer')
 const cors = require('cors')
+const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 require('dotenv').config()
+
+const imageFilter = require('./helper/imageFilter')
 
 const app = express()
 const port = process.env.PORT || 5000
 
-const imageFilter = function(req, file, cb) {
-  // Accept pdf only
-  if (!file.originalname.match(/\.(pdf|PDF)$/)) {
-      req.fileValidationError = 'Only pdf files are allowed!';
-      return cb(new Error('Only pdf files are allowed!'), false);
-  }
-  cb(null, true);
-};
 
+app.use(express.json())
 app.use(cors())
 
 // Multer storage
@@ -63,3 +60,6 @@ if (process.env.NODE_ENV === 'production') {
 app.listen(port, () => {
   console.log(`listening on port ${port}`)
 })
+
+
+// Setup for mongoose
