@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react"
 import { Link } from "react-router-dom"
-import AuthOptions from '../auth/AuthOptions'
+import AuthOptions from "../auth/AuthOptions"
 
-
-const Header = () => {
+export default function Header() {
   return (
     <header id="header">
       <Link to="/">
@@ -13,5 +12,3 @@ const Header = () => {
     </header>
   )
 }
-
-export default Header
