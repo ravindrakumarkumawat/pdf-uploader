@@ -28,6 +28,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage, fileFilter: pdfFilter }).array('file', 5)
 
 // Routes
+app.use("/user", require("./routes/userRouter"))
 app.get('/', (req, res) => {
   res.send('Hello Server')
 })
@@ -45,7 +46,7 @@ app.post('/upload', (req, res) => {
   })
 })
 
-app.get('login', (req, res) => {
+app.get('/login', (req, res) => {
   // Authenticate user
 })
 
