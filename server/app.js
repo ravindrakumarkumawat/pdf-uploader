@@ -17,7 +17,7 @@ app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 
 // Routes
-app.use('/', uploadRouter)
+app.use('/users/:id', uploadRouter)
 app.use('/users', userRouter)
 
 app.listen(port, () => {
