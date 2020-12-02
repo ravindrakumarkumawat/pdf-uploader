@@ -72,9 +72,8 @@ const Upload = () => {
     for (let x = 0; x < selectedFile.length; x++) {
       data.append("file", selectedFile[x]);
     }
-
     axios
-      .post("http://localhost:5000/upload", data, {
+      .post(`http://localhost:5000/users/${userData.user.id}/upload`, data, {
         onUploadProgress: (ProgressEvent) => {
           setLoaded((ProgressEvent.loaded / ProgressEvent.total) * 100)
         },
