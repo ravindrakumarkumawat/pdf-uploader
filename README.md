@@ -8,5 +8,5 @@
 <ul>
 
 <h3>Admin Credentials</h3>
-<p>ravindra-admin@gmial.com</p>
+<p>ravindra-admin@gmail.com</p>
 <p>12345</p>
