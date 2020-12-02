@@ -1,3 +1,4 @@
+const path = require('path')
 const multer = require('multer')
 const express = require('express')
 const router = express.Router()
@@ -14,9 +15,10 @@ const storage = multer.diskStorage({
       if (!user) {
         return res.status(404).json({ error: 'user doesnt exist' })
       }
+      const location = path.join(__dirname, '../temp/uploads/')
       user.pdfs.push({
         fileName: file.originalname,
-        fileLocation: 'temp/uploads/'
+        fileLocation: location
       })
 
       await user.save()
