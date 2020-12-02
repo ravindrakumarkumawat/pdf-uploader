@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
+import UserContext from '../../context/UserContext'
 import {Progress} from 'reactstrap'
 import { ToastContainer, toast } from 'react-toastify'
 import axios from "axios"
@@ -8,6 +9,7 @@ import './Upload.css'
 const Upload = () => {
   const [selectedFile, setSelectedFile] = useState(null)
   const [loaded, setLoaded] = useState(0)
+  const { userData } = useContext(UserContext)
 
   const checkMimeType  = (event) => {
     const files = event.target.files // Getting file Object
@@ -88,7 +90,7 @@ const Upload = () => {
         setLoaded(0)
       });
   }
-  return (
+  return userData.user && (
     <div className="container">
 	      <div className="row">
       	  <div className="offset-md-3 col-md-6">

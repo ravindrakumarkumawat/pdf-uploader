@@ -17,6 +17,24 @@ const userSchema = new mongoose.Schema({
   lastName: {
     type: String, 
     required: true
+  }, 
+  pdfs: [{
+    fileName: {
+      type: String,
+      required: true
+    },
+    fileLocation: {
+      type: String,
+      required: true
+    },
+    uplodedOn: {
+      type: Date,
+      default: Date.now
+    }
+  }],
+  createdOn: {
+    type: Date,
+    default: Date.now
   }
 })
 
