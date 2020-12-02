@@ -14,7 +14,9 @@ const PdfsList = () => {
     <ul>
     {
       pdfs.map((pdf) => (
-        <li key={pdf._id}>{pdf.fileName}</li>
+        <li key={pdf._id}>
+        <a href={`${pdf.fileLocation}${pdf.fileName}`} download>{pdf.fileName}</a>
+        </li>
       ))
     }
       
