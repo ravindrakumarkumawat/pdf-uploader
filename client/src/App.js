@@ -6,7 +6,6 @@ import Home from "./components/pages/Home"
 import Login from "./components/auth/Login"
 import Register from "./components/auth/Register"
 import UserContext from "./context/UserContext"
-import Upload from "./components/upload/Upload"
 import "./App.css"
 
 function App() {
@@ -48,7 +47,6 @@ function App() {
         <div className="container">
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/upload" component={Upload} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
           </Switch>
