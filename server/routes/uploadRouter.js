@@ -10,7 +10,7 @@ const User = require('../models/userModel')
 const storage = multer.diskStorage({
   destination: async function(req, file, cb) {            
       cb(null, 'temp/uploads/')  
-      let user = await User.findOne({_id: req.baseUrl.split('/')[2]})
+      const user = await User.findOne({_id: req.baseUrl.split('/')[2]})
       if (!user) {
         return res.status(404).json({ error: 'user doesnt exist' })
       }
@@ -41,6 +41,15 @@ router.post('/upload', (req, res) => {
     }
     return res.status(200).send(req.file) // Everything went fine    
   })
+})
+
+router.get('/pdfs', async (req, res) => {
+  try {
+    const user = await User.findOne({_id: req.baseUrl.split('/')[2]})
+    return res.json(user.pdfs)
+  } catch (error) {
+    return res.status(500).json({error: error.message})
+  }
 })
 
 module.exports = router
