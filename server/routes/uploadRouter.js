@@ -18,8 +18,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage, fileFilter: pdfFilter }).array('file', 5)
 
-router.post('/upload', auth, async (req, res) => {
-  await upload(req, res, (err) => {
+router.post('/upload', (req, res) => {
+  upload(req, res, (err) => {
     if (err instanceof multer.MulterError) {
       // A Multer error occurred when uploading
       return res.status(500).json(err)
