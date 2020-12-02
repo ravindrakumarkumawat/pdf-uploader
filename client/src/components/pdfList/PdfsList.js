@@ -9,7 +9,7 @@ const PdfsList = () => {
     axios.get(`http://localhost:5000/users/${uid}/pdfs`).then((res) => {
       setPdfs([...res.data])
     })
-  }, [])
+  }, [uid])
   return ( <>
     <ul>
     {
