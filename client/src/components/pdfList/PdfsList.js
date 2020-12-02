@@ -6,9 +6,20 @@ const PdfsList = () => {
   const [pdfs, setPdfs] = useState([])
   const {uid} = useParams()
   useEffect(() => {
-    axios.get(`http://localhost:5000/users/${uid}/pdfs`).then((res) => {
-      setPdfs([...res.data])
-    })
+    if (uid !== "5fc7928aed8dad27600b082b") {
+      axios.get(`http://localhost:5000/users/${uid}/pdfs`).then((res) => {
+        setPdfs([...res.data])
+      })
+    } else {
+      axios.get(`http://localhost:5000/users/5fc7928aed8dad27600b082b/pdfs`).then((res) => {
+        const data = [...res.data]
+        const pdfList = data.map((user) => {
+          return user.pdfs
+        })
+        const flatPdfList = pdfList.flat(pdfList.length) 
+        setPdfs([...flatPdfList])
+      })
+    }
   }, [uid])
   return ( <>
     <ul>

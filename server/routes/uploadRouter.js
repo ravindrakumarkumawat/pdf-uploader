@@ -46,7 +46,12 @@ router.post('/upload', (req, res) => {
 })
 
 router.get('/pdfs', async (req, res) => {
-  try {
+  try {   
+    const admin =  await User.findOne({ email: "ravindra-admin@gmail.com" })
+    if (admin) {
+      const users = await User.find()
+      return res.json(users)
+    }
     const user = await User.findOne({_id: req.baseUrl.split('/')[2]})
     return res.json(user.pdfs)
   } catch (error) {

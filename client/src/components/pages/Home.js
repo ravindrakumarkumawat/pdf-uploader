@@ -11,8 +11,16 @@ function Home() {
       {userData.user ? (
         <>
           <h1>{userData.user.firstName}</h1>
-          <Upload />
-          <Link to={`/${userData.user.id}/pdfs`}> Show PDF </Link>
+          { userData.user.id !== "5fc7928aed8dad27600b082b"
+           && (
+             <Upload />
+          )
+          }
+          {
+            userData.user.id === "5fc7928aed8dad27600b082b" ? <Link to={`/5fc7928aed8dad27600b082b/pdfs`}> Show PDF </Link> :
+              <Link to={`/${userData.user.id}/pdfs`}> Show PDF </Link>
+          }
+          
         </>
       ) : (
         <>
