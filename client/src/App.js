@@ -7,6 +7,7 @@ import Login from "./components/auth/Login"
 import Register from "./components/auth/Register"
 import UserContext from "./context/UserContext"
 import "./App.css"
+import PdfsList from "./components/pdfList/PdfsList"
 
 function App() {
   const [userData, setUserData] = useState({
@@ -49,6 +50,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
+            <Route exact path='/:uid/pdfs' component={PdfsList} />
           </Switch>
         </div>
       </UserContext.Provider>

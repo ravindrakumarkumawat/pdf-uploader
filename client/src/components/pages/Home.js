@@ -3,15 +3,16 @@ import { Link } from "react-router-dom"
 import UserContext from "../../context/UserContext"
 import Upload from '../upload/Upload'
 
-export default function Home() {
+function Home() {
   const { userData } = useContext(UserContext)
-
+  
   return (
     <div className="page">
       {userData.user ? (
         <>
-          <h1>Welcome {userData.user.firstName}</h1>
+          <h1>{userData.user.firstName}</h1>
           <Upload />
+          <Link to={`/${userData.user.id}/pdfs`}> Show PDF </Link>
         </>
       ) : (
         <>
@@ -22,3 +23,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default Home
